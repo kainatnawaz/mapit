@@ -1,5 +1,5 @@
 name: mapit
-description: MapIt allow you to use map,search and place markers.
+description: MapIt allow you to use map in your app,It will help user to search any place on map and can place marker on map and also can move the user to current location on map.
 version: 0.0.1
 homepage: https://github.com/kainatnawaz/mapit.git
 
