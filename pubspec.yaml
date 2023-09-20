@@ -1,0 +1,33 @@
+name: mapit
+description: MapIt allow you to use map,search and place markers.
+version: 0.0.1
+homepage: https://github.com/kainatnawaz/mapit.git
+
+environment:
+  sdk: '>=3.1.1 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  google_maps_flutter: ^2.5.0
+  get: ^4.6.6
+  geoflutterfire2: ^2.3.15
+  location: ^5.0.3
+  http: ^1.1.0
+  flutter_google_places_sdk: ^0.3.6
+  permission_handler: ^11.0.0
+  sizer: ^2.0.15
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+
+
+
+# The following section is specific to Flutter packages.
+flutter:
+
