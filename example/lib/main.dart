@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
           child: GoogleMapScreen(
             address: (val){
               var location=val;
-            },
+            }, mapApiKey: 'YOUR_MAP_API_KEY',
           )),
     );
   }

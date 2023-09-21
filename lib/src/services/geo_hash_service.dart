@@ -55,8 +55,7 @@ class GeoHashService {
                 geohash: geoFirePoint.hash,
                 lat: googleMapLatLongModel.results?.first.geometry?.location?.lat?.toDouble() ?? Constants.defaultLat,
                 lng: googleMapLatLongModel.results?.first.geometry?.location?.lng?.toDouble() ?? Constants.defaultLng,
-                country: googleMapLatLongModel.results?.first.addressComponents?.
-                firstWhereOrNull((element) => element.types!.contains("country"))
+                country: googleMapLatLongModel.results?.first.addressComponents?.firstWhereOrNull((element) => element.types!.contains("country"))
                     ?.longName ??
                     "",
                 city: googleMapLatLongModel.results?.first.addressComponents

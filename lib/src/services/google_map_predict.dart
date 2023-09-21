@@ -68,6 +68,7 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
 
   @override
   Widget build(BuildContext context) {
+    print("_____LEN:${GoogleMapFunctions.predictions?.predictions.length}");
     if (GoogleMapFunctions.predictions != null && GoogleMapFunctions.isList) {
       return Container(
         padding: const EdgeInsets.only(top: 10.0),
@@ -75,14 +76,14 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
         child: SingleChildScrollView(
           child: Column(
             children: List.generate(
-                GoogleMapFunctions.predictions!.predictions.length, (index) {
+                GoogleMapFunctions.predictions?.predictions.length??0, (index) {
               return GestureDetector(
                 onTap: () async {
-                  GoogleMapFunctions.isList = false;
-
-                  await getLatLngFromAddress(GoogleMapFunctions
-                      .predictions!.predictions[index].fullText);
-                  setState(() {});
+                  // GoogleMapFunctions.isList = false;
+                  //
+                  // await getLatLngFromAddress(GoogleMapFunctions
+                  //     .predictions?.predictions[index].fullText??"");
+                  // setState(() {});
                 },
                 child: Container(
                     width: Get.width,
@@ -103,8 +104,7 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
                                     child: MouseRegion(
                                       cursor: SystemMouseCursors.click,
                                       child: Text(
-                                        GoogleMapFunctions.predictions!
-                                            .predictions[index].fullText,
+                                        GoogleMapFunctions.predictions?.predictions[index].fullText??"",
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
                                       ),
