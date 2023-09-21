@@ -79,11 +79,11 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
                 GoogleMapFunctions.predictions?.predictions.length??0, (index) {
               return GestureDetector(
                 onTap: () async {
-                  // GoogleMapFunctions.isList = false;
-                  //
-                  // await getLatLngFromAddress(GoogleMapFunctions
-                  //     .predictions?.predictions[index].fullText??"");
-                  // setState(() {});
+                  GoogleMapFunctions.isList = false;
+
+                  await getLatLngFromAddress(GoogleMapFunctions
+                      .predictions?.predictions[index].fullText??"");
+                  setState(() {});
                 },
                 child: Container(
                     width: Get.width,

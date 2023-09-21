@@ -113,6 +113,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
 
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         home: SafeArea(
           child: Scaffold(
               extendBody: false,
