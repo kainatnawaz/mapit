@@ -28,7 +28,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: GoogleMapScreen()),
+          child: GoogleMapScreen(
+            address: (val){
+              var location=val;
+            },
+          )),
     );
   }
 }

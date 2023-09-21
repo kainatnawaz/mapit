@@ -1,36 +1,57 @@
-MapIt
-MapIt package lets you add map,search on map and add markers to your Flutter app.
 
-Installation
-Add the latest version of package to your pubspec.yaml (and rundart pub get):
+# MapIt
+
+MapIt package lets you add map in your app,search and place markers.
+
+## Installation
+
+1. Add the latest version of package to your pubspec.yaml (and run`dart pub get`):
+```yaml
 dependencies:
-map_it: ^0.0.1
-Import the package and use it in your Flutter App.
+  mapit: ^0.0.4
+```
+2. Import the package and use it in your Flutter App.
+```dart
+import 'package:mapit/mapit.dart';
+```
 
-import 'package:map_it/map_it.dart';
-
+## Example
 There are a number of properties that you can modify:
-selectedLocation
-address callback
 
-Example
+- selectedLocation
+- address CallBack
+
+<hr>
+
+<table>
+<tr>
+<td>
+
+```dart
 class ShowMapScreen extends StatelessWidget {  
-const ShowMapScreen({Key? key}) : super(key: key);
-
-@override  
-Widget build(BuildContext context) {  
-return Scaffold(  
-body: Center(  
-child: const GoogleMapScreen(
-address: (val) {
-PickLocationData location = val;
-setState(() {});
-},
-),  
-),  
-);  
-}  
+  const ShowMapScreen({Key? key}) : super(key: key);  
+  
+  @override  
+  Widget build(BuildContext context) {  
+    return Scaffold(  
+      body: Center(  
+        child: const GoogleMapScreen(address: (val){
+          var location=val;
+        },),  
+      ),  
+    );  
+  }  
 }
+```
 
-Next Goals
-Use address callback function to get the address from map screen.
+</td>
+<td>
+<img  src="https://github.com/kainatnawaz/mapit/blob/main/WhatsApp%20Image%202023-09-20%20at%2011.02.56%20AM.jpeg"  alt="">
+</td>
+</tr>
+</table>
+
+## Next Goals
+
+- [x] Use address Callback functions.
+  Now, you can specify the save address from GoogleMapScreen.

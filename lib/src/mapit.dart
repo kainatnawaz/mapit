@@ -21,11 +21,13 @@ import 'model/pick_location_data.dart';
 class GoogleMapScreen extends StatefulWidget {
   final ValueChanged<PickLocationData>? address;
   final bool? showButton;
+  final String? mapApiKey;
   final LatLng? selectedLocation;
 
   const GoogleMapScreen({
     Key? key,
     this.address,
+    this.mapApiKey,
     this.showButton = true,
     this.selectedLocation,
   }) : super(key: key);
