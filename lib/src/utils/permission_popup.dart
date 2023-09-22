@@ -1,14 +1,8 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sizer/sizer.dart';
-
 import '../resources/resources.dart';
-import 'app_button.dart';
-import 'heights_widths.dart';
-
 
 class PermissionDialog extends StatefulWidget {
   const PermissionDialog({Key? key}) : super(key: key);
@@ -20,13 +14,17 @@ class PermissionDialog extends StatefulWidget {
 class _PermissionDialogState extends State<PermissionDialog> {
   @override
   Widget build(BuildContext context) {
+    log("___HERE");
     return Scaffold(
       backgroundColor: R.colors.transparent,
-      body: Align(
-        alignment: Alignment.center,
+      body: Center(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-          margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.05,
+              vertical: MediaQuery.of(context).size.height * 0.02),
+          margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.02,
+              vertical: MediaQuery.of(context).size.height * 0.04),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: R.colors.white,
@@ -41,49 +39,50 @@ class _PermissionDialogState extends State<PermissionDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-
               Text(
-             "OOPs",
+                "Oops!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 26,
                   color: R.colors.black,
                 ),
               ),
-              h2,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
               Text(
-               "please grant required permissions",
+                "Please grant required permissions",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 12.sp,
+                  fontSize: 16,
                   color: R.colors.hintGrey,
                 ),
               ),
-              h2,
-              ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 7.h),
-                child:
-                AppButton(
-                  color: R.colors.themeColor,
-                  buttonTitle:"open_settings",
-                  textColor: R.colors.white,
-                  textSize: 16.sp,
-                  onTap: () async {
-                    await openAppSettings();
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              saveButtonWidget(
+                width: MediaQuery.of(context).size.width * 0.6,borderRadius: 10.0,
+                color: R.colors.themeColor,
+                buttonTitle:"Open Settings",
+                textColor: R.colors.white,
+                textSize: 16,
+                onTap: () async {
+                  await openAppSettings();
 
-                  },
-                ),
+                },
               ),
               TextButton(
                 style: ButtonStyle(
-                  overlayColor: MaterialStateColor.resolveWith((states) => R.colors.themeColor.withOpacity(0.05)),
+                  overlayColor: MaterialStateColor.resolveWith(
+                      (states) => R.colors.themeColor.withOpacity(0.05)),
                 ),
                 onPressed: () {
-                  Get.back();
+                  Navigator.pop(context);
                 },
-                child:const Text(
-                 "Back",
-                  style: TextStyle(),
+                child: const Text(
+                  "Back",
+                  style: TextStyle(fontSize: 16),
                 ),
               )
             ],
@@ -91,6 +90,51 @@ class _PermissionDialogState extends State<PermissionDialog> {
         ),
       ),
     );
+  }
 
+  Widget saveButtonWidget(
+      {buttonWidth,
+      color,
+      buttonTitle,
+      textColor,
+      textSize,
+      elevation,
+      borderColor,
+      borderWidth,
+      borderRadius,
+      fontWeight,
+      width,
+      textPadding,
+      letterSpacing,
+      onTap}) {
+    return SizedBox(
+      width: width ?? 80,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          elevation: elevation ?? 3,
+          padding: EdgeInsets.zero,
+          side: BorderSide(
+              color: borderColor ?? R.colors.transparent,
+              width: borderWidth ?? 2),
+          backgroundColor: color ?? R.colors.themeColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 20),
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: textPadding ?? 14),
+          child: Text(
+            buttonTitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: double.parse(textSize.toString()),
+                fontWeight: fontWeight ?? FontWeight.w500,
+                color: textColor ?? R.colors.white,
+                letterSpacing: letterSpacing ?? 0.44),
+          ),
+        ),
+      ),
+    );
   }
 }

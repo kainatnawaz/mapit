@@ -1,8 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
-import 'package:get/get.dart';
 import 'package:mapit/src/constants/constants.dart';
+import 'package:mapit/src/utils/global_functions.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class GoogleMapFunctions {
@@ -21,14 +22,14 @@ class GoogleMapFunctions {
     log('Result: $predictions');
   }
 
-  static Future<bool> checkLocation({bool showError = true}) async {
+  static Future<bool> checkLocation({bool showError = true , required BuildContext context}) async {
     bool isPremissionGranted = false;
     PermissionStatus status = await Permission.location.status;
 
     if (status == PermissionStatus.denied) {
       if (showError) {
         // ZBotToast.showToastError(message: "Permission is denied");
-        Get.snackbar("Error", "permission is denied");
+        ScaffoldMessenger.of(context).showSnackBar(GlobalFunctions().snackBarWidget("Error! Permission denied"));
       }
 
       await Permission.location.request();
@@ -36,7 +37,7 @@ class GoogleMapFunctions {
       isPremissionGranted = true;
     } else if (status == PermissionStatus.permanentlyDenied) {
       if (showError) {
-        Get.snackbar("Error", "permission is denied");
+        ScaffoldMessenger.of(context).showSnackBar(GlobalFunctions().snackBarWidget("Error! Permission denied"));
 
         await openAppSettings();
       }

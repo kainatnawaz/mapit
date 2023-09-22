@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 import 'resources.dart';
 
@@ -26,14 +25,14 @@ class AppDecoration {
           horizontal: horizontalPadding ?? 16, vertical: verticalPadding ?? 14),
       fillColor: fillColor ?? R.colors.white,
       labelText:  labelText,
-      labelStyle:TextStyle(fontSize: 13.sp,color: R.colors.hintGrey),
+      labelStyle:TextStyle(fontSize: 13,color: R.colors.hintGrey),
       hintText: hintText,
       floatingLabelBehavior: FloatingLabelBehavior.always,
       prefixIcon: preIcon,
       suffixIcon: suffixIcon != null ? Container(child: suffixIcon) : null,
       hintStyle: TextStyle(
         color: R.colors.hintGrey,
-        fontSize: 13.sp,
+        fontSize: 13,
         fontWeight:
         focusNode?.hasFocus ?? false ? FontWeight.w400 : FontWeight.w400,
       ),
@@ -129,7 +128,7 @@ class AppDecoration {
       fillColor: fillColor,
       hintStyle:TextStyle(
         fontWeight: FontWeight.normal,
-        fontSize: 10.8.sp,
+        fontSize: 16,
         color: R.colors.hintGrey,
       ),
     );

@@ -8,7 +8,7 @@ MapIt package lets you add map in your app,search and place markers.
 1. Add the latest version of package to your pubspec.yaml (and run`dart pub get`):
 ```yaml
 dependencies:
-  mapit: ^0.0.8
+  mapit: ^0.0.9
 ```
 2. Import the package and use it in your Flutter App.
 ```dart

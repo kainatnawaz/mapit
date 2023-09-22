@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as loc;
 import '../constants/api_urls.dart';
 import '../constants/constants.dart';
 import '../model/pick_location_data.dart';
 import 'dart:ui' as ui;
-
+import '../utils/global_functions.dart';
 import 'api_service.dart';
 import 'google_map_lat_lng.dart';
 
@@ -24,19 +23,26 @@ class GeoHashService {
 
 
 
-  static Future<void> getLocation({bool isSignup = false}) async {
+  static Future<void> getLocation({bool isSignup = false ,  String? icon1}) async {
     loc.Location location = loc.Location();
     //await location.changeSettings(accuracy: loc.LocationAccuracy.a, interval: 1000, distanceFilter: 0);
     loc.LocationData currentLocation = await location.getLocation();
     currentPosition = LatLng(currentLocation.latitude!, currentLocation.longitude!);
 
-    await getAddress(currentLocation.latitude!, currentLocation.longitude!,isSignup: isSignup);
+    await getAddress(currentLocation.latitude!, currentLocation.longitude!,isSignup: isSignup , icon1: icon1);
   }
 
-  static Future getAddress(double lat, double lng,{bool isSignup=false}) async {
-
+  static Future getAddress(double lat, double lng,{bool isSignup=false ,  String? icon1}) async {
     GoogleMapLatLongModel googleMapLatLongModel = GoogleMapLatLongModel();
     GeoFirePoint geoFirePoint = geo.point(latitude: lat, longitude: lng);
+    BitmapDescriptor? customMarker;
+    if(icon1 != null ){
+      getBytesFromAsset(
+        icon1,
+      ).then((onValue) {
+        customMarker = BitmapDescriptor.fromBytes(onValue, size: const Size(100, 100));
+      });
+    }
     await _apiRequests.getMap(
         url: ApiUrl.getAddressFromlatlng(lat, lng, Constants.mapKey),
         onSuccess: (res) async {
@@ -45,7 +51,7 @@ class GeoHashService {
             markers.clear();
             markers.add(
               Marker(
-                icon:BitmapDescriptor.defaultMarker ,
+                icon:customMarker??BitmapDescriptor.defaultMarker ,
                 markerId: MarkerId("$currentPosition"),
                 position: currentPosition,
                 anchor: const Offset(0.5,0.5),
@@ -73,7 +79,7 @@ class GeoHashService {
                     "");
 
 
-          Get.forceAppUpdate();
+          // Get.forceAppUpdate();
         },
         onError: (e) {
           log(e.toString());

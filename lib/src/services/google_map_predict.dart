@@ -4,10 +4,9 @@ import 'dart:math';
 
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mapit/src/constants/constants.dart';
 import 'package:mapit/src/services/google_map_function.dart';
-
+import '../utils/global_functions.dart';
 
 import '../constants/api_urls.dart';
 import '../model/pick_location_data.dart';
@@ -68,7 +67,6 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
 
   @override
   Widget build(BuildContext context) {
-    print("_____LEN:${GoogleMapFunctions.predictions?.predictions.length}");
     if (GoogleMapFunctions.predictions != null && GoogleMapFunctions.isList) {
       return Container(
         padding: const EdgeInsets.only(top: 10.0),
@@ -86,7 +84,7 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
                   setState(() {});
                 },
                 child: Container(
-                    width: Get.width,
+                    width: MediaQuery.of(context).size.width * .8,
                     color: Colors.white,
                     child: Column(
                       children: [
@@ -95,7 +93,7 @@ class _GoogleMapPredictState extends State<GoogleMapPredict> {
                           child: Container(
                             color: Colors.white,
                             padding: EdgeInsets.symmetric(
-                                horizontal: Get.width * 0.03),
+                                horizontal: MediaQuery.of(context).size.width * 0.03),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

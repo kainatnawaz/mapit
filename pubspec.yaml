@@ -1,6 +1,6 @@
 name: mapit
 description: MapIt allow you to use map in your app,It will help user to search any place on map and can place marker on map and also can move the user to current location on map.
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/kainatnawaz/mapit.git
 
 environment:
@@ -12,13 +12,11 @@ dependencies:
     sdk: flutter
 
   google_maps_flutter: ^2.5.0
-  get: ^4.6.6
   geoflutterfire2: ^2.3.15
   location: ^5.0.3
   http: ^1.1.0
   flutter_google_places_sdk: ^0.3.6
   permission_handler: ^11.0.0
-  sizer: ^2.0.15
 
 dev_dependencies:
   flutter_test:

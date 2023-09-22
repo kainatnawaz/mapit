@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Mapit Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,9 +30,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: GoogleMapScreen(
+            // selectedLocationLat:51.5072 ,
+            // selectedLocationLng:0.1276 ,
+            // markerImage: "assets/marker.png",
+            onPressBack: (){
+              Navigator.pop(context);
+            },
             address: (val){
-              var location=val;
-            }, mapApiKey: 'YOUR_MAP_API_KEY',
+
+            }, mapApiKey: 'AIzaSyB3-PXBvW4UuH10ZRBY7kd20EFcxDZksQU',
           )),
     );
   }
